@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+* {
+  font-family: 'Orbitron', sans-serif;
+  color: #00FF00;
+}
+
+body {
+  background-color: #000000;
+}
+
+#background {
+  width: 100vw;
+  height: 100vh;
+  border-top: 0px;
+  background-color: #003F00;
+}
+
+#title {
+  margin: auto;
+  text-align: center;
+
+  background-image: linear-gradient(#000000, #003F00);
+}
+
+/*
+#left {
+  width: 50%;
+  position: absolute;
+  left: 0%;
+}
+#right {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+}
+*/
+
+button {
+  color: #000000;
+  background-color: #00FF00;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px;
+
+  transition-duration: 0.2s;
+
+}
+
+button:hover {
+  border: 1px;
+  color: #FFFFFF;
+}
+
+button:disabled {
+  color: #AAAAAA;
+  background-color: #00AA00;
+}
+
+#log {
+  color: #FF0000;
+  border:1px solid red;
+}
+
+#canvasDiv {
+  width: 100vw;
+  height: 120px;
+}
+
+/* for SoundBank, loading etc. info */
+#logSB {
+  color: #0000FF;
+  border:1px solid blue;
+  visibility: hidden; /* enabled when loggingEnabled */
+}
+
+#video {
+  width: 50vw;
+  visibility: hidden;
+}
