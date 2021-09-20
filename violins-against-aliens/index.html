@@ -252,7 +252,8 @@
 					name: 'intro_dramatic_master',
 					file: 'AWAC_intro_dramatic_Master.ogg',
 					next: 'segment_dramatic_master',
-					outro: 'outro_master'
+					outro: 'outro_master',
+					stinger: 'stinger_gliss_fast_master'
 				},
 				segment_dramatic_master: {
 					name: 'segment_dramatic_master',
@@ -285,9 +286,11 @@
 					name: 'outro_master',
 					file: 'AWAC_outro_Master.ogg',
 					next: '',
-					outro: ''
+					outro: '',
+					stinger: 'stinger_outro_master'
 				},
 
+				// stingers
 				stinger_gliss_master: {
 					name: 'stinger_gliss_master',
 					file: 'AWAC_stinger_gliss_Master.ogg',
@@ -303,6 +306,14 @@
 					outro: '',
 					type: 'stinger',
 					startOffset: 0.434
+				},
+				stinger_outro_master: {
+					name: 'stinger_outro_master',
+					file: 'AWAC_stinger_outro_Master.ogg',
+					next: '',
+					outro: '',
+					type: 'stinger',
+					startOffset: 0.869
 				}
 			};
 			
@@ -359,9 +370,14 @@
 
 			function onResize()
 			{
+				// setCanvasSize('100%', '100%') // ?
+			}
+
+			function setCanvasSize(width, height)
+			{
 				let canvas = document.getElementById("canvas");
-				canvas.style.width = '100%';
-				canvas.style.height = '100%';
+				canvas.style.width = width;
+				canvas.style.height = height;
 				canvas.width = canvas.offsetWidth;
 				canvas.height = canvas.offsetHeight;
 			}
@@ -424,7 +440,7 @@
 					trigger_dramatic.onclick = () => {
 						disableButton("trigger_dramatic", true);
 						nextQueuedSegmentName = "intro_dramatic_master";
-						playStinger("stinger_gliss_fast_master");
+						playStinger(getSegmentForName(nextQueuedSegmentName).stinger);
 					};
 					trigger_dramatic.disabled = true; // activate on play
 					
@@ -436,6 +452,7 @@
 						disableButton("trigger_dramatic", true);
 						if(currentSegment && currentSegment.outro) {
 							nextQueuedSegmentName = currentSegment.outro;
+							playStinger(getSegmentForName(nextQueuedSegmentName).stinger);
 						} else {
 							stop();
 						}
@@ -503,6 +520,13 @@
 				let nodeHeight = 50;
 				let offset = 50;
 
+				// size for centering
+				if(currentSegment["next"] || nextQueuedSegmentName) {
+					setCanvasSize(2*nodeWidth + offset + 2*margin);
+				} else {
+					setCanvasSize(nodeWidth + 2*margin);
+				}
+
 				clearCanvas(ctx);
 				if(isPlaying) {
 					// current
@@ -551,7 +575,7 @@
 				
 				// background
 				ctx.fillStyle = color_bg;
-				ctx.fillRect(x, y, w, h);
+				ctx.roundRect(x, y, w, h, 10, true);
 				
 				if(flashing) {
 					let flashValue = 127*(Math.sin(context.currentTime * 5) + 1);
@@ -561,7 +585,7 @@
 					
 					ctx.lineWidth = 2;
 					ctx.strokeStyle = color_flashing;
-					ctx.strokeRect(x, y, w, h);
+					ctx.roundRect(x, y, w, h, 10, false);
 				}
 
 				// foreground
@@ -579,7 +603,7 @@
 				
 				// show name
 				ctx.font = "12pt Orbitron";
-				ctx.fillText(segment.name, x + 10, y + (h * 0.4));
+				ctx.fillText(segment.name.replace("_master", ""), x + 10, y + (h * 0.4));
 				
 				/*
 				// DEBUG quarters
@@ -896,7 +920,7 @@
 			*/
 
 			// Util
-			CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+			CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r, filled) {
 				if (w < 2 * r) r = w / 2;
 				if (h < 2 * r) r = h / 2;
 				this.beginPath();
@@ -906,6 +930,8 @@
 				this.arcTo(x,   y+h, x,   y,   r);
 				this.arcTo(x,   y,   x+w, y,   r);
 				this.closePath();
+				if(filled) this.fill();
+				this.stroke();
 				return this;
 			}
 		</script>
@@ -917,23 +943,29 @@
 				<h2>(Entry for Austin Wintory's <b>Aliens: Fireteam Elite</b> Contest)</h2>
 				<h3>Music by Christian Afonso<br/>based on a motif by Austin Wintory</h3>
 			</div>
-			<div id="left">
-				<div id="log">
-					Click to init audio</br>
+			<div id="content">
+				<div id="left">
+					<div id="log">
+						Click to init audio</br>
+					</div>
+					<div id="canvasDiv">
+						<canvas id="canvas"></canvas>
+					</div>
 				</div>
-				<div id="canvasDiv">
-					<canvas id="canvas"></canvas>
-				</div>
-			</div>
-			<div id="right">
-				<div id="videoWindow">
-					<video id="video" controls="false">
-						<!-- <source src="TODO from segment" type="video/mp4"/> -->
-					</video>
-					<!-- TODO score image? -->
+				<div id="right">
+					<div id="videoWindow">
+						<video id="video" controls="false">
+							<!-- <source src="TODO from segment" type="video/mp4"/> -->
+						</video>
+						<!-- TODO score image? -->
+					</div>
 				</div>
 			</div>
 			<div id="logSB" onclick="logSB('', true);" title="click to clear">
+			</div>
+			<div id="copyright">
+				<div>© 2021 Christian Afonso</div>
+				<div id="mail">chr.afonso@gmail.com</div>
 			</div>
 		</div>
 	<body>
