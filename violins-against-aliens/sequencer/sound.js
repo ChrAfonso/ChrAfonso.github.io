@@ -43,7 +43,13 @@ class SoundElement {
             // TODO also triggered when browser shows load error???
 			this.log("  Loaded " + path + " as "+name+", decodeAudioData...");
 			
-			context.decodeAudioData(request.response, (buffer) => {
+			//DEBUG
+			this.log("---response---")
+			this.log(request.response);
+			this.log("--------------")
+
+			let arrayBuffer = request.response;
+			context.decodeAudioData(arrayBuffer, (buffer) => {
 				if(buffer == null) {
 					this.log("ERROR: buffer is null!");
 					return;
@@ -54,7 +60,7 @@ class SoundElement {
 				this.loaded = true;
 				
 				if(onLoaded) onLoaded(this);
-			}, onError);
+			}, e => { this.log("decode error, context.state: "+this.context.state); onError(e); });
 		};
         
         request.onerror = onError;
@@ -94,7 +100,11 @@ class SoundBank {
 		var sound = new SoundElement(this.context, this.log);
 		this._soundsLoading.push(sound);
 		
-		sound.loadFile(file, name, (sound) => { this._soundLoaded(sound, onLoaded); }, onError);
+		if(sound) {
+			sound.loadFile(file, name, (sound) => { onLoaded(sound); }, onError);
+		} else {
+			this.log("Error: sound not created (for name: "+name+")");
+		}
 	}
 	
 	/**
@@ -113,12 +123,17 @@ class SoundBank {
 				name = file.name;
 			}
 
-			this.loadSound(path, name, (sound) => { this._soundLoaded(sound, onAllLoaded); }, onError)
+			this.loadSound(path, name, (sound) => { this._soundLoaded(sound, onAllLoaded, name); }, onError)
 		}
 	}
 	
-	_soundLoaded(sound, onAllLoaded)
+	_soundLoaded(sound, onAllLoaded, triggeredFor)
 	{
+		if(!sound) {
+			this.log("Error: sound undefined or null. Triggered for: "+triggeredFor);
+		}
+
+		this.log("sound loaded: "+sound.name);
 		var index = this._soundsLoading.indexOf(sound)
 		if(index != -1) {
 			this._soundsLoading.splice(index, 1);
@@ -132,6 +147,7 @@ class SoundBank {
 	
 	allLoaded()
 	{
+		this.log("all sounds loaded!");
 		return (this._soundsLoading.length == 0);
 	}
 

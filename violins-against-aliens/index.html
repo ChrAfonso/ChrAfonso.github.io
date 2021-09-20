@@ -4,10 +4,10 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
 	<head>
-		<title>Audiofiltertest</title>
+		<title>Christian Afonso - Violins against Aliens</title>
 		<link rel="stylesheet" href="styles.css" type="text/css"/>
 		<script src="sequencer/sound.js"></script>
-		<!-- <script src="sequencer/sequencer.js"></script> -->
+		<script src="sequencer/sequencer.js"></script>
 		<script>
 			var segmentsFolder = 'segments/';
 			var segments = {
@@ -346,29 +346,38 @@
 			// debug logging: sound loading, queueing etc.
 			var loggingEnabled = false;
 
-			window.addEventListener('click', init, false); // audio can only start
-			window.addEventListener('resize', onResize); 
+			window.addEventListener('click', init, false); // audio can only start on interaction
+			window.addEventListener('touchstart', init, false); // audio can only start on interaction
+			window.addEventListener('resize', onResize);
+			window.addEventListener('resume', _ => { if(context) context.resume(); })
+			window.addEventListener('suspend', _ => { if(context) context.suspend(); })
 			
 			// setup AudioContext
 			function init()
 			{
 				window.removeEventListener('click', arguments.callee);
+				window.removeEventListener('touchstart', arguments.callee);
 
 				logDiv = document.getElementById("log");
 				let logSBDiv = document.getElementById("logSB");
 				if(loggingEnabled) logSBDiv.style.visibility = "visible";
 
-				onResize();
+				// onResize();
 
 				log("Init...", true);
 				try {
 					window.AudioContext = window.AudioContext || window.webkitAudioContext || window.MozAudioContext;
 					context = new AudioContext();
+					context.onstatechange = function() { console.log("Audio context state changed: " + context.state); }
 				} catch(e) {
 					alert('No audio support');
 				}
 				
-				loadSegments();
+				if(context.state != "running") {
+					context.resume().then(_ => { loadSegments(); });
+				} else {
+					loadSegments();
+				}
 			}
 
 			function onResize()
@@ -389,15 +398,24 @@
 			{
 				log("Loading segments...");
 
+				// HACK detect ogg capability
+				let audio = document.createElement('audio');
+				let canPlayOgg = audio.canPlayType("audio/ogg");
+
 				let files = [];
 				Object.keys(segments).forEach((key) => {
+					let file = segments[key].file;
+					if(!canPlayOgg) {
+						console.log("Can't play ogg, try mp3...");
+						segments[key].file = "mp3/"+ file.replace(".ogg", ".mp3");
+					}
 					files.push({
 						name: segments[key].name,
 						file: segments[key].file
 					});
 				});
 
-				soundBank = new SoundBank(context, logSB);
+				soundBank = new SoundBank(context);  // logSB
 				soundBank.loadSounds(files, segmentsFolder, onSoundsLoaded, onError);
 			}
 			
@@ -408,7 +426,7 @@
 			function onError(e)
 			{
 				log("Error!");
-				alert(e);
+				console.log(e);
 			}
 			
 			function onSoundsLoaded(trigger)
@@ -903,8 +921,7 @@
 				}
 			}
 			
-			// SEQUENCER - uses same SoundBank as before
-			/*
+			// TEST SEQUENCER - uses same SoundBank as before
 			function startSequencer()
 			{
 				let sequencer = new Sequencer(context, log);
@@ -920,7 +937,6 @@
 
 				sequencer.play(0);
 			}
-			*/
 
 			// Util
 			CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r, filled) {
