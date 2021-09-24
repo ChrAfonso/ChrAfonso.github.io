@@ -40,14 +40,9 @@ class SoundElement {
 
 		var request = new XMLHttpRequest();
 		request.onload = () => {
-            // TODO also triggered when browser shows load error???
+			// TODO also triggered when browser shows load error???
 			this.log("  Loaded " + path + " as "+name+", decodeAudioData...");
 			
-			//DEBUG
-			this.log("---response---")
-			this.log(request.response);
-			this.log("--------------")
-
 			let arrayBuffer = request.response;
 			context.decodeAudioData(arrayBuffer, (buffer) => {
 				if(buffer == null) {
@@ -60,10 +55,10 @@ class SoundElement {
 				this.loaded = true;
 				
 				if(onLoaded) onLoaded(this);
-			}, e => { this.log("decode error, context.state: "+this.context.state); onError(e); });
+			}, e => { this.log("decode error!"); onError(e); });
 		};
-        
-        request.onerror = onError;
+		
+		request.onerror = onError;
 
 		request.open('GET', path, true); // NOTE: Only works via http from same origin
 		this.log("Opened request...");
@@ -133,7 +128,7 @@ class SoundBank {
 			this.log("Error: sound undefined or null. Triggered for: "+triggeredFor);
 		}
 
-		this.log("sound loaded: "+sound.name);
+		this.log("Sound loaded: "+sound.name);
 		var index = this._soundsLoading.indexOf(sound)
 		if(index != -1) {
 			this._soundsLoading.splice(index, 1);

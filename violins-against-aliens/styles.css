@@ -70,6 +70,8 @@ button {
 button:hover {
   border: 1px;
   color: #FFFFFF;
+
+  cursor: pointer;
 }
 
 button:disabled {
@@ -94,11 +96,61 @@ button:disabled {
   justify-content: center;
 }
 
+#sliderDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  visibility: hidden; /* initial */
+}
+
+.slidecontainer {
+  width: 30%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  background: #AAAAAA;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: #bbff00;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: #bbff00;
+  cursor: pointer;
+}
+
 /* for SoundBank, loading etc. info */
 #logSB {
   color: #0000FF;
   border:1px solid blue;
   visibility: hidden; /* enabled when loggingEnabled */
+}
+
+#videoWindow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #video {

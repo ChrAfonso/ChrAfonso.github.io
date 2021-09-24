@@ -10,16 +10,37 @@
 		<script src="sequencer/sequencer.js"></script>
 		<script>
 			var segmentsFolder = 'segments/';
+			var videoFolder = 'video/';
 			var segments = {
 				intro_action_master: {
 					name: 'intro_action_master',
-					file: 'AWAC_intro_action_Master.ogg',
-					next: 'loop_action_bar_001_master',
+					file: 'AWAC_intro_action_MASTER.ogg',
+					layers: [
+						{ name: 'base', segment: 'intro_action_BASE' },
+						{ name: 'intense', segment: 'intro_action_INTENSE' }
+					],
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
+				intro_action_BASE: {
+					name: 'intro_action_BASE',
+					file: 'AWAC_intro_action_BASE.ogg',
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
+				intro_action_INTENSE: {
+					name: 'intro_action_INTENSE',
+					file: 'AWAC_intro_action_INTENSE.ogg',
+					next: 'loop_action_master',
 					outro: 'outro_master'
 				},
 				loop_action_master: {
 					name: 'loop_action_master',
 					file: 'AWAC_loop_action_Master.ogg',
+					layers: [
+						{ name: 'base', segment: 'loop_action_BASE' },
+						{ name: 'intense', segment: 'loop_action_INTENSE' }
+					],
 					next: 'loop_action_master',
 					outro: 'outro_master',
 					tempo: 120,
@@ -59,209 +80,245 @@
 						{ number: 32, offset: 60, beat: '4/4' }
 					]
 				},
-				loop_action_bar_001_master: {
-					name: 'loop_action_bar_001_master',
-					file: 'AWAC_loop_action_bar_001_Master.ogg',
-					next: 'loop_action_bar_002_master',
+				loop_action_BASE: {
+					name: 'loop_action_BASE',
+					file: 'AWAC_loop_action_BASE.ogg',
+					next: 'loop_action_master',
 					outro: 'outro_master'
 				},
-				loop_action_bar_002_master: {
-					name: 'loop_action_bar_002_master',
-					file: 'AWAC_loop_action_bar_002_Master.ogg',
-					next: 'loop_action_bar_003_master',
+				loop_action_INTENSE: {
+					name: 'loop_action_INTENSE',
+					file: 'AWAC_loop_action_INTENSE.ogg',
+					next: 'loop_action_master',
 					outro: 'outro_master'
 				},
-				loop_action_bar_003_master: {
-					name: 'loop_action_bar_003_master',
-					file: 'AWAC_loop_action_bar_003_Master.ogg',
-					next: 'loop_action_bar_004_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_004_master: {
-					name: 'loop_action_bar_004_master',
-					file: 'AWAC_loop_action_bar_004_Master.ogg',
-					next: 'loop_action_bar_005_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_005_master: {
-					name: 'loop_action_bar_005_master',
-					file: 'AWAC_loop_action_bar_005_Master.ogg',
-					next: 'loop_action_bar_006_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_006_master: {
-					name: 'loop_action_bar_006_master',
-					file: 'AWAC_loop_action_bar_006_Master.ogg',
-					next: 'loop_action_bar_007_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_007_master: {
-					name: 'loop_action_bar_007_master',
-					file: 'AWAC_loop_action_bar_007_Master.ogg',
-					next: 'loop_action_bar_008_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_008_master: {
-					name: 'loop_action_bar_008_master',
-					file: 'AWAC_loop_action_bar_008_Master.ogg',
-					next: 'loop_action_bar_009_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_009_master: {
-					name: 'loop_action_bar_009_master',
-					file: 'AWAC_loop_action_bar_009_Master.ogg',
-					next: 'loop_action_bar_010_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_010_master: {
-					name: 'loop_action_bar_010_master',
-					file: 'AWAC_loop_action_bar_010_Master.ogg',
-					next: 'loop_action_bar_011_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_011_master: {
-					name: 'loop_action_bar_011_master',
-					file: 'AWAC_loop_action_bar_011_Master.ogg',
-					next: 'loop_action_bar_012_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_012_master: {
-					name: 'loop_action_bar_012_master',
-					file: 'AWAC_loop_action_bar_012_Master.ogg',
-					next: 'loop_action_bar_013_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_013_master: {
-					name: 'loop_action_bar_013_master',
-					file: 'AWAC_loop_action_bar_013_Master.ogg',
-					next: 'loop_action_bar_014_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_014_master: {
-					name: 'loop_action_bar_014_master',
-					file: 'AWAC_loop_action_bar_014_Master.ogg',
-					next: 'loop_action_bar_015_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_015_master: {
-					name: 'loop_action_bar_015_master',
-					file: 'AWAC_loop_action_bar_015_Master.ogg',
-					next: 'loop_action_bar_016_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_016_master: {
-					name: 'loop_action_bar_016_master',
-					file: 'AWAC_loop_action_bar_016_Master.ogg',
-					next: 'loop_action_bar_017_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_017_master: {
-					name: 'loop_action_bar_017_master',
-					file: 'AWAC_loop_action_bar_017_Master.ogg',
-					next: 'loop_action_bar_018_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_018_master: {
-					name: 'loop_action_bar_018_master',
-					file: 'AWAC_loop_action_bar_018_Master.ogg',
-					next: 'loop_action_bar_019_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_019_master: {
-					name: 'loop_action_bar_019_master',
-					file: 'AWAC_loop_action_bar_019_Master.ogg',
-					next: 'loop_action_bar_020_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_020_master: {
-					name: 'loop_action_bar_020_master',
-					file: 'AWAC_loop_action_bar_020_Master.ogg',
-					next: 'loop_action_bar_021_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_021_master: {
-					name: 'loop_action_bar_021_master',
-					file: 'AWAC_loop_action_bar_021_Master.ogg',
-					next: 'loop_action_bar_022_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_022_master: {
-					name: 'loop_action_bar_022_master',
-					file: 'AWAC_loop_action_bar_022_Master.ogg',
-					next: 'loop_action_bar_023_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_023_master: {
-					name: 'loop_action_bar_023_master',
-					file: 'AWAC_loop_action_bar_023_Master.ogg',
-					next: 'loop_action_bar_024_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_024_master: {
-					name: 'loop_action_bar_024_master',
-					file: 'AWAC_loop_action_bar_024_Master.ogg',
-					next: 'loop_action_bar_025_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_025_master: {
-					name: 'loop_action_bar_025_master',
-					file: 'AWAC_loop_action_bar_025_Master.ogg',
-					next: 'loop_action_bar_026_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_026_master: {
-					name: 'loop_action_bar_026_master',
-					file: 'AWAC_loop_action_bar_026_Master.ogg',
-					next: 'loop_action_bar_027_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_027_master: {
-					name: 'loop_action_bar_027_master',
-					file: 'AWAC_loop_action_bar_027_Master.ogg',
-					next: 'loop_action_bar_028_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_028_master: {
-					name: 'loop_action_bar_028_master',
-					file: 'AWAC_loop_action_bar_028_Master.ogg',
-					next: 'loop_action_bar_029_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_029_master: {
-					name: 'loop_action_bar_029_master',
-					file: 'AWAC_loop_action_bar_029_Master.ogg',
-					next: 'loop_action_bar_030_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_030_master: {
-					name: 'loop_action_bar_030_master',
-					file: 'AWAC_loop_action_bar_030_Master.ogg',
-					next: 'loop_action_bar_031_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_031_master: {
-					name: 'loop_action_bar_031_master',
-					file: 'AWAC_loop_action_bar_031_Master.ogg',
-					next: 'loop_action_bar_032_master',
-					outro: 'outro_master'
-				},
-				loop_action_bar_032_master: {
-					name: 'loop_action_bar_032_master',
-					file: 'AWAC_loop_action_bar_032_Master.ogg',
-					next: 'loop_action_bar_001_master',
-					outro: 'outro_master'
-				},
+				// loop_action_bar_001_master: {
+				// 	name: 'loop_action_bar_001_master',
+				// 	file: 'AWAC_loop_action_bar_001_Master.ogg',
+				// 	video: 'AWAC_loop_action_bar_001_Master.mp4',
+				// 	next: 'loop_action_bar_002_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_002_master: {
+				// 	name: 'loop_action_bar_002_master',
+				// 	file: 'AWAC_loop_action_bar_002_Master.ogg',
+				// 	video: 'AWAC_loop_action_bar_002_Master.mp4',
+				// 	next: 'loop_action_bar_003_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_003_master: {
+				// 	name: 'loop_action_bar_003_master',
+				// 	file: 'AWAC_loop_action_bar_003_Master.ogg',
+				// 	video: 'AWAC_loop_action_bar_003_Master.mp4',
+				// 	next: 'loop_action_bar_004_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_004_master: {
+				// 	name: 'loop_action_bar_004_master',
+				// 	file: 'AWAC_loop_action_bar_004_Master.ogg',
+				// 	video: 'AWAC_loop_action_bar_004_Master.mp4',
+				// 	next: 'loop_action_bar_005_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_005_master: {
+				// 	name: 'loop_action_bar_005_master',
+				// 	file: 'AWAC_loop_action_bar_005_Master.ogg',
+				// 	next: 'loop_action_bar_006_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_006_master: {
+				// 	name: 'loop_action_bar_006_master',
+				// 	file: 'AWAC_loop_action_bar_006_Master.ogg',
+				// 	next: 'loop_action_bar_007_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_007_master: {
+				// 	name: 'loop_action_bar_007_master',
+				// 	file: 'AWAC_loop_action_bar_007_Master.ogg',
+				// 	next: 'loop_action_bar_008_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_008_master: {
+				// 	name: 'loop_action_bar_008_master',
+				// 	file: 'AWAC_loop_action_bar_008_Master.ogg',
+				// 	next: 'loop_action_bar_009_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_009_master: {
+				// 	name: 'loop_action_bar_009_master',
+				// 	file: 'AWAC_loop_action_bar_009_Master.ogg',
+				// 	next: 'loop_action_bar_010_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_010_master: {
+				// 	name: 'loop_action_bar_010_master',
+				// 	file: 'AWAC_loop_action_bar_010_Master.ogg',
+				// 	next: 'loop_action_bar_011_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_011_master: {
+				// 	name: 'loop_action_bar_011_master',
+				// 	file: 'AWAC_loop_action_bar_011_Master.ogg',
+				// 	next: 'loop_action_bar_012_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_012_master: {
+				// 	name: 'loop_action_bar_012_master',
+				// 	file: 'AWAC_loop_action_bar_012_Master.ogg',
+				// 	next: 'loop_action_bar_013_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_013_master: {
+				// 	name: 'loop_action_bar_013_master',
+				// 	file: 'AWAC_loop_action_bar_013_Master.ogg',
+				// 	next: 'loop_action_bar_014_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_014_master: {
+				// 	name: 'loop_action_bar_014_master',
+				// 	file: 'AWAC_loop_action_bar_014_Master.ogg',
+				// 	next: 'loop_action_bar_015_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_015_master: {
+				// 	name: 'loop_action_bar_015_master',
+				// 	file: 'AWAC_loop_action_bar_015_Master.ogg',
+				// 	next: 'loop_action_bar_016_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_016_master: {
+				// 	name: 'loop_action_bar_016_master',
+				// 	file: 'AWAC_loop_action_bar_016_Master.ogg',
+				// 	next: 'loop_action_bar_017_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_017_master: {
+				// 	name: 'loop_action_bar_017_master',
+				// 	file: 'AWAC_loop_action_bar_017_Master.ogg',
+				// 	next: 'loop_action_bar_018_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_018_master: {
+				// 	name: 'loop_action_bar_018_master',
+				// 	file: 'AWAC_loop_action_bar_018_Master.ogg',
+				// 	next: 'loop_action_bar_019_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_019_master: {
+				// 	name: 'loop_action_bar_019_master',
+				// 	file: 'AWAC_loop_action_bar_019_Master.ogg',
+				// 	next: 'loop_action_bar_020_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_020_master: {
+				// 	name: 'loop_action_bar_020_master',
+				// 	file: 'AWAC_loop_action_bar_020_Master.ogg',
+				// 	next: 'loop_action_bar_021_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_021_master: {
+				// 	name: 'loop_action_bar_021_master',
+				// 	file: 'AWAC_loop_action_bar_021_Master.ogg',
+				// 	next: 'loop_action_bar_022_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_022_master: {
+				// 	name: 'loop_action_bar_022_master',
+				// 	file: 'AWAC_loop_action_bar_022_Master.ogg',
+				// 	next: 'loop_action_bar_023_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_023_master: {
+				// 	name: 'loop_action_bar_023_master',
+				// 	file: 'AWAC_loop_action_bar_023_Master.ogg',
+				// 	next: 'loop_action_bar_024_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_024_master: {
+				// 	name: 'loop_action_bar_024_master',
+				// 	file: 'AWAC_loop_action_bar_024_Master.ogg',
+				// 	next: 'loop_action_bar_025_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_025_master: {
+				// 	name: 'loop_action_bar_025_master',
+				// 	file: 'AWAC_loop_action_bar_025_Master.ogg',
+				// 	next: 'loop_action_bar_026_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_026_master: {
+				// 	name: 'loop_action_bar_026_master',
+				// 	file: 'AWAC_loop_action_bar_026_Master.ogg',
+				// 	next: 'loop_action_bar_027_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_027_master: {
+				// 	name: 'loop_action_bar_027_master',
+				// 	file: 'AWAC_loop_action_bar_027_Master.ogg',
+				// 	next: 'loop_action_bar_028_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_028_master: {
+				// 	name: 'loop_action_bar_028_master',
+				// 	file: 'AWAC_loop_action_bar_028_Master.ogg',
+				// 	next: 'loop_action_bar_029_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_029_master: {
+				// 	name: 'loop_action_bar_029_master',
+				// 	file: 'AWAC_loop_action_bar_029_Master.ogg',
+				// 	next: 'loop_action_bar_030_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_030_master: {
+				// 	name: 'loop_action_bar_030_master',
+				// 	file: 'AWAC_loop_action_bar_030_Master.ogg',
+				// 	next: 'loop_action_bar_031_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_031_master: {
+				// 	name: 'loop_action_bar_031_master',
+				// 	file: 'AWAC_loop_action_bar_031_Master.ogg',
+				// 	next: 'loop_action_bar_032_master',
+				// 	outro: 'outro_master'
+				// },
+				// loop_action_bar_032_master: {
+				// 	name: 'loop_action_bar_032_master',
+				// 	file: 'AWAC_loop_action_bar_032_Master.ogg',
+				// 	next: 'loop_action_bar_001_master',
+				// 	outro: 'outro_master'
+				// },
 				intro_dramatic_master: {
 					name: 'intro_dramatic_master',
-					file: 'AWAC_intro_dramatic_Master.ogg',
+					file: 'AWAC_intro_dramatic_MASTER.ogg',
+					layers: [
+						{ name: 'base', segment: 'intro_dramatic_BASE' },
+						{ name: 'intense', segment: 'intro_dramatic_INTENSE' }
+					],
 					next: 'segment_dramatic_master',
 					outro: 'outro_master',
 					stinger: 'stinger_gliss_fast_master'
 				},
+				intro_dramatic_BASE: {
+					name: 'intro_dramatic_BASE',
+					file: 'AWAC_intro_dramatic_BASE.ogg',
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
+				intro_dramatic_INTENSE: {
+					name: 'intro_dramatic_INTENSE',
+					file: 'AWAC_intro_dramatic_INTENSE.ogg',
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
 				segment_dramatic_master: {
 					name: 'segment_dramatic_master',
-					file: 'AWAC_segment_dramatic_Master.ogg',
-					next: 'loop_action_bar_001_master',
+					file: 'AWAC_segment_dramatic_MASTER.ogg',
+					layers: [
+						{ name: 'base', segment: 'segment_dramatic_BASE' },
+						{ name: 'intense', segment: 'segment_dramatic_INTENSE' }
+					],
+					next: 'loop_action_master',
 					outro: 'outro_master',
 					tempo: 138,
 					beat: '4/4',
@@ -284,10 +341,22 @@
 						{ number: 16, offset: 30 }
 					]
 				},
+				segment_dramatic_BASE: {
+					name: 'segment_dramatic_BASE',
+					file: 'AWAC_segment_dramatic_BASE.ogg',
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
+				segment_dramatic_INTENSE: {
+					name: 'segment_dramatic_INTENSE',
+					file: 'AWAC_segment_dramatic_INTENSE.ogg',
+					next: 'loop_action_master',
+					outro: 'outro_master'
+				},
 				
 				outro_master: {
 					name: 'outro_master',
-					file: 'AWAC_outro_Master.ogg',
+					file: 'AWAC_outro_MASTER.ogg',
 					next: '',
 					outro: '',
 					stinger: 'stinger_outro_master'
@@ -296,7 +365,7 @@
 				// stingers
 				stinger_gliss_master: {
 					name: 'stinger_gliss_master',
-					file: 'AWAC_stinger_gliss_Master.ogg',
+					file: 'AWAC_stinger_gliss_MASTER.ogg',
 					next: '',
 					outro: '',
 					type: 'stinger',
@@ -304,7 +373,7 @@
 				},
 				stinger_gliss_fast_master: {
 					name: 'stinger_gliss_fast_master',
-					file: 'AWAC_stinger_gliss_fast_Master.ogg',
+					file: 'AWAC_stinger_gliss_fast_MASTER.ogg',
 					next: '',
 					outro: '',
 					type: 'stinger',
@@ -312,7 +381,7 @@
 				},
 				stinger_outro_master: {
 					name: 'stinger_outro_master',
-					file: 'AWAC_stinger_outro_Master.ogg',
+					file: 'AWAC_stinger_outro_MASTER.ogg',
 					next: '',
 					outro: '',
 					type: 'stinger',
@@ -328,11 +397,19 @@
 			// Audio
 			var context;
 			var source;
+			var source_INTENSE;
+			var gain_INTENSE;
 			var stingerSource;
+			
+			// Intensity Slider
+			var intensitySlider;
+			
+			// Synced video
+			var video;
 			
 			// Sounds
 			var soundBank;
-
+			
 			// Sequencer
 			var startSegment = 'intro_action_master';
 			var currentSegment = null;
@@ -342,6 +419,8 @@
 			var isPlaying = false;
 			var lastSegmentStartTime = 0;
 			var nextSegmentEndTime = 0;
+			
+			var intensity = 1; // default
 
 			// debug logging: sound loading, queueing etc.
 			var loggingEnabled = false;
@@ -350,7 +429,6 @@
 			window.addEventListener('touchstart', init, false); // audio can only start on interaction
 			window.addEventListener('resize', onResize);
 			window.addEventListener('resume', _ => { if(context) context.resume(); })
-			window.addEventListener('suspend', _ => { if(context) context.suspend(); })
 			
 			// setup AudioContext
 			function init()
@@ -361,6 +439,19 @@
 				logDiv = document.getElementById("log");
 				let logSBDiv = document.getElementById("logSB");
 				if(loggingEnabled) logSBDiv.style.visibility = "visible";
+
+				intensitySlider = document.getElementById("intensity");
+				if(intensitySlider) {
+					intensitySlider.oninput = function() {
+						intensity = intensitySlider.value / 100; // percent to ratio
+						if(gain_INTENSE) {
+							gain_INTENSE.gain.setValueAtTime(Math.min(intensity, 1), context.currentTime); // safeguard against invalid values
+						}
+						// console.log("intensity: " + intensity); // DEBUG
+					};
+				}
+
+				video = document.getElementById("video");
 
 				// onResize();
 
@@ -445,7 +536,7 @@
 				if(!buttons) {
 					buttons = document.createElement("div");
 					buttons.id = "buttons";
-					logDiv.parentElement.insertBefore(buttons, logDiv);
+					logDiv.parentElement.insertBefore(buttons, logDiv.parentElement.children[0]);
 				}
 				
 				if(buttons) {
@@ -458,11 +549,8 @@
 					var trigger_dramatic = document.createElement("button");
 					trigger_dramatic.id = "trigger_dramatic";
 					trigger_dramatic.innerHTML = "Trigger dramatic event";
-					trigger_dramatic.onclick = () => {
-						disableButton("trigger_dramatic", true);
-						nextQueuedSegmentName = "intro_dramatic_master";
-						playStinger(getSegmentForName(nextQueuedSegmentName).stinger);
-					};
+					trigger_dramatic.onclick = () => { triggerOnNextBar("intro_dramatic_master"); };
+					disableButton("trigger_dramatic", true);
 					trigger_dramatic.disabled = true; // activate on play
 					
 					var stopButton = document.createElement("button");
@@ -472,8 +560,7 @@
 						disableButton("stopButton", true);
 						disableButton("trigger_dramatic", true);
 						if(currentSegment && currentSegment.outro) {
-							nextQueuedSegmentName = currentSegment.outro;
-							playStinger(getSegmentForName(nextQueuedSegmentName).stinger);
+							triggerOnNextBar(currentSegment.outro);
 						} else {
 							stop();
 						}
@@ -494,6 +581,9 @@
 //					buttons.appendChild(sequencerButton);
 				}
 				
+				let sliderDiv = document.getElementById('sliderDiv');
+				if(sliderDiv) sliderDiv.style.visibility = "visible";
+
 				graphDiv = document.createElement("div");
 				logDiv.parentElement.insertBefore(graphDiv, logDiv)
 			}
@@ -509,7 +599,7 @@
 				// TODO convert to setTimeout? Always set timeout one beat before end of bar to queue next one?
 				window.requestAnimationFrame(onAnimationFrame);
 			}
-
+			let lastBar = "";
 			function onAnimationFrame(timestamp)
 			{
 				if(!currentSegment) {
@@ -524,10 +614,12 @@
 				let progressInfo = "";
 				if(isPlaying) progressInfo = " (" + progress + " / " + duration + ")";
 				let segmentInfo = "current Segment: " + currentSegment.name + progressInfo + "<br/>";
-				if(currentSegment.bars) {
-					let currentBar = findCurrentBar(currentSegment, context.currentTime);
-					// if(currentBar) segmentInfo += "current bar: " + currentBar.number + "<br/>";
-				}
+				// if(currentSegment.bars) {
+				// 	let currentBar = findCurrentBar(currentSegment, context.currentTime);
+				// 	if(currentBar != lastBar) console.log("currentBar: "+currentBar);
+				// 	// if(currentBar) segmentInfo += "current bar: " + currentBar.number + "<br/>";
+				//   lastBar = currentBar;
+				// }
 				
 				if(isPlaying) logDiv.innerHTML = segmentInfo;
 
@@ -579,6 +671,11 @@
 			// TODO make only as wide/high as name/contents require?
 			function drawSegment(ctx, segment, percentage, x, y, w, h, enabled, active, flashing)
 			{
+				if(!segment) {
+					console.log("ERROR: Can't draw undefined segment!");
+					return;
+				}
+
 				// defaults
 				if(!x) x = 0;
 				if(!y) y = 0;
@@ -716,8 +813,25 @@
 				return beat.substring(0, beat.indexOf('/'));
 			}
 
+			function triggerOnNextBar(segment) {
+				nextQueuedSegmentName = segment;
+				let nextQueuedSegment = getSegmentForName(nextQueuedSegmentName);
+				if(nextQueuedSegment) {
+					if(currentSegment.bars) {
+						let currentBar = findCurrentBar(currentSegment, context.currentTime);
+						console.log("currentBar: "+JSON.stringify(currentBar));
+						
+						nextSegmentEndTime = lastSegmentStartTime + currentBar.offset;
+						let timeToSwitch = nextSegmentEndTime - context.currentTime;
+						console.log("switching in ")
+					}
+
+					playStinger(getSegmentForName(nextQueuedSegmentName).stinger);
+				}
+			};
+
 			// TODO if stinger startOffset is longer than time to next segment, it should only trigger one segment later...
-			function playStinger(segmentName)
+			function playStinger(segmentName, time)
 			{
 				let stingerSegment = getSegmentForName(segmentName);
 				if(!stingerSegment) {
@@ -751,11 +865,26 @@
 					return;
 				}
 				let soundElement = soundBank.getSound(currentSegment.name);
+				let soundElement_INTENSE = null;
+				// --------
+				
+				// TEST layers
+				if(currentSegment.layers) {
+					let base = currentSegment.layers.find(layer => layer.name === "base");
+					let intense = currentSegment.layers.find(layer => layer.name === "intense");
+					if(base && intense) {
+						console.log(intense.name + ": " + intense.segment);
+						soundElement = soundBank.getSound(base.segment);
+						soundElement_INTENSE = soundBank.getSound(intense.segment);
+					}
+				}
+
 				if(!soundElement) {
 					log("ERROR: No soundElement found for name: " + segmentName + "");
 					return;
 				}
-				// --------
+				
+				// -----------
 				
 				if(!offset) offset = 0;
 				
@@ -777,6 +906,21 @@
 				source.start(offset); // TODO: able to unqueue it if not yet started? just call stop!
 				isPlaying = true;
 				
+				// LAYERS
+				if(soundElement_INTENSE) {
+					source_INTENSE = context.createBufferSource();
+					source_INTENSE.buffer = soundElement_INTENSE.buffer;
+					
+					if(!gain_INTENSE) {
+						gain_INTENSE = context.createGain();
+					}
+					source_INTENSE.connect(gain_INTENSE);
+					gain_INTENSE.connect(context.destination);
+					gain_INTENSE.gain.setValueAtTime(intensity, context.currentTime);
+
+					source_INTENSE.start(offset);
+				}
+
 				// store
 				lastSegmentStartTime = context.currentTime + offset;
 				nextSegmentEndTime = context.currentTime + offset + source.buffer.duration;
@@ -792,6 +936,19 @@
 				} else {
 					trigger_dramatic.disabled = false;
 					//stopButton.disabled = false;
+				}
+
+				// WIP synced video
+				if(video) {
+					if(currentSegment.video) {
+						video.src = videoFolder + currentSegment.video;
+						video.load();
+						video.play(); // TODO wait for load finish? preload in separate "buffer" tag and swap?
+						video.style.visibility = 'visible';
+					} else {
+						video.pause();
+						video.style.visibility = 'hidden';
+					}
 				}
 			}
 			
@@ -862,6 +1019,8 @@
 					source.stop();
 				}
 				
+				if(video) video.pause();
+
 				clearQueue();
 				
 				isPlaying = false;
@@ -964,8 +1123,16 @@
 			</div>
 			<div id="content">
 				<div id="left">
+					<div id="sliderDiv">
+						<div id="sliderLabel">
+							<p>Intensity:</p>
+						</div>
+						<div class="slidecontainer">
+							<input type="range" min="0" max="100" value="100" class="slider" id="intensity">
+						</div>
+					</div>
 					<div id="log">
-						Click to init audio</br>
+						<div align="center"><font color="#bbff00">Click to init audio</font></div>
 					</div>
 					<div id="canvasDiv">
 						<canvas id="canvas"></canvas>
@@ -973,7 +1140,7 @@
 				</div>
 				<div id="right">
 					<div id="videoWindow">
-						<video id="video" controls="false">
+						<video id="videoDISABLED">
 							<!-- <source src="TODO from segment" type="video/mp4"/> -->
 						</video>
 						<!-- TODO score image? -->
