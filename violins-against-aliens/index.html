@@ -175,7 +175,7 @@
 					next: '',
 					outro: '',
 					type: 'stinger',
-					startOffset: 0.434
+					startOffset: 0.869
 				},
 				stinger_gliss_fast_master: {
 					name: 'stinger_gliss_fast_master',
@@ -184,7 +184,6 @@
 					outro: '',
 					type: 'stinger',
 					startOffset: 0.434
-					// startOffset: 0.869
 				},
 				stinger_outro_master: {
 					name: 'stinger_outro_master',
@@ -695,7 +694,10 @@
 				// remove previous queued ones
 				for (let i=0; i < queuedStingers.length; i++) {
 					let stinger = queuedStingers[i];
-					if(stinger) stinger.stop();
+					if(stinger) {
+						console.log("Stopping stinger " + stinger + " (" + (i + 1) + "/" + queuedStingers.length + ")");
+						stinger.stop();
+					}
 				}
 				queuedStingers = [];
 
@@ -800,7 +802,7 @@
 				var nextSegment = getNextSegment(currentSegment);
 				if(nextSegment && nextSegment.stinger) {
 					// TODO is not cancelled when triggering another stinger, why?
-					// playStinger(nextSegment.stinger, nextSegmentEndTime);
+					playStinger(nextSegment.stinger, nextSegmentEndTime);
 				}
 				
 				// Handle button states special cases
