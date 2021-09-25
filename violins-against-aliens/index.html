@@ -651,13 +651,23 @@
 				return beat.substring(0, beat.indexOf('/'));
 			}
 
-			function triggerOnNextBar(segment, safeTime=1.0) {
+			// set safeTime to -1 to detect from stinger, 0 to not have at all, >0 to force
+			function triggerOnNextBar(segment, safeTime=-1) {
 				nextQueuedSegmentName = segment;
 				let nextQueuedSegment = getSegmentForName(nextQueuedSegmentName);
 				if(nextQueuedSegment) {
 					console.log("nextQueuedSegment: "+nextQueuedSegment.name);
+
+					if(safeTime == -1 && nextQueuedSegment.stinger) {
+						let stingerSegment = getSegmentForName(nextQueuedSegment.stinger);
+						if(stingerSegment) {
+							safeTime = stingerSegment.startOffset;
+						}
+					}
+					console.log("safeTime: " + safeTime);
+
 					if(currentSegment.bars) {
-						let nextBar = findNextBar(currentSegment, context.currentTime);
+						let nextBar = findNextBar(currentSegment, context.currentTime + safeTime);
 						console.log("nextBar: "+JSON.stringify(nextBar));
 						
 						if(nextBar) {
@@ -669,20 +679,14 @@
 							if(source_INTENSE) source_INTENSE.stop(nextSegmentEndTime);
 						}
 					}
-
-					let stinger = getSegmentForName(nextQueuedSegmentName).stinger;
-					if(stinger) {
-						let stingerSegment = getSegmentForName(stinger);
-						if(stingerSegment) {
-							safeTime = stingerSegment.startOffset;
-							console.log("safeTime: " + safeTime);
-							if(nextSegmentEndTime - context.currentTime > safeTime) {
-								playStinger(getSegmentForName(nextQueuedSegmentName).stinger, nextSegmentEndTime);
-							}
+					
+					if(nextQueuedSegment.stinger) {
+						if(nextSegmentEndTime - context.currentTime > safeTime) {
+							playStinger(getSegmentForName(nextQueuedSegmentName).stinger, nextSegmentEndTime);
 						}
 					}
 				}
-			};
+			}
 
 			let queuedStingers = [];
 			// TODO if stinger startOffset is longer than time to next segment, it should only trigger one segment later...
