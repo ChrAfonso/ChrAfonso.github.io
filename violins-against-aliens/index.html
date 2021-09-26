@@ -103,7 +103,8 @@
 					],
 					next: 'segment_dramatic_master',
 					outro: 'outro_master',
-					stinger: 'stinger_gliss_fast_master'
+					stinger: 'stinger_dramatic_master'
+					// stinger: 'stinger_gliss_fast_master'
 				},
 				intro_dramatic_BASE: {
 					name: 'intro_dramatic_BASE',
@@ -124,6 +125,7 @@
 						{ name: 'base', segment: 'segment_dramatic_BASE' },
 						{ name: 'intense', segment: 'segment_dramatic_INTENSE' }
 					],
+					// stinger: 'stinger_dramatic_master',
 					next: 'loop_action_master',
 					outro: 'outro_master',
 					tempo: 138,
@@ -184,6 +186,14 @@
 					outro: '',
 					type: 'stinger',
 					startOffset: 0.434
+				},
+				stinger_dramatic_master: {
+					name: 'stinger_dramatic_master',
+					file: 'AWAC_stinger_dramatic_MASTERTRACK.ogg',
+					next: '',
+					outro: '',
+					type: 'stinger',
+					startOffset: 0.869
 				},
 				stinger_outro_master: {
 					name: 'stinger_outro_master',
@@ -688,18 +698,25 @@
 			}
 
 			let queuedStingers = [];
-			// TODO if stinger startOffset is longer than time to next segment, it should only trigger one segment later...
-			function playStinger(segmentName, time)
+			function removeQueuedStingersAfter(time = 0)
 			{
-				// remove previous queued ones
 				for (let i=0; i < queuedStingers.length; i++) {
 					let stinger = queuedStingers[i];
-					if(stinger) {
-						console.log("Stopping stinger " + stinger + " (" + (i + 1) + "/" + queuedStingers.length + ")");
-						stinger.stop();
+					if(stinger.source && stinger.startTime > time) {
+						console.log("Stopping stinger " + stinger.name + " (" + (i + 1) + "/" + queuedStingers.length + ")");
+						stinger.source.stop();
 					}
 				}
 				queuedStingers = [];
+			}
+
+			// NOTE if stinger startOffset is longer than time to next segment,
+			//      it should only trigger one segment later... this is checked
+			//      in triggerOnNextBar
+			function playStinger(segmentName, time)
+			{
+				// remove previous queued ones
+				removeQueuedStingersAfter(context.currentTime); // any that have not yet started
 
 				let stingerSegment = getSegmentForName(segmentName);
 				if(!stingerSegment) {
@@ -722,8 +739,10 @@
 				
 				if(!nextSegmentEndTime) nextSegmentEndTime = 0;
 				logSB("nextSegmentEndTime:" + nextSegmentEndTime + ", stingerSegment.startOffset:" + stingerSegment.startOffset);
-				stingerSource.start((time ? time : nextSegmentEndTime) - stingerSegment.startOffset);
-				queuedStingers.push(stingerSource);
+				
+				let startTime = (time ? time : nextSegmentEndTime) - stingerSegment.startOffset;
+				stingerSource.start(startTime);
+				queuedStingers.push({ name: segmentName, source: stingerSource, startTime: startTime });
 			}
 			
 			function playSegment(segmentName, offset)
