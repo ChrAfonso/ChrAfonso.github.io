@@ -1,0 +1,54 @@
+<html>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<head>
+		<title>Christian Afonso - Violins against Aliens</title>
+		<link rel="stylesheet" href="styles.css" type="text/css"/>
+		<script src="sequencer/sound.js"></script>
+		<script src="graph/node_graph.js"></script>
+		<script src="main.js"></script>
+	</head>
+	<body>
+		<div id="background">
+			<div id="title">
+				<h1><big>"Violins against Aliens"</big></h1>
+				<h2>(Entry for Austin Wintory's <b>Aliens: Fireteam Elite</b> Contest)</h2>
+				<h3>Music by Christian Afonso<br/>based on a motif by Austin Wintory</h3>
+			</div>
+			<div id="content">
+				<div id="left">
+					<div id="sliderDiv">
+						<div id="sliderLabel">
+							<p>Intensity:</p>
+						</div>
+						<div class="slidecontainer">
+							<input type="range" min="0" max="100" value="100" class="slider" id="intensity">
+						</div>
+					</div>
+					<div id="log">
+						<div align="center"><font color="#bbff00">Click to init audio</font></div>
+					</div>
+					<div id="canvasDiv">
+						<canvas id="canvas"></canvas>
+					</div>
+				</div>
+				<div id="right">
+					<div id="videoWindow">
+						<video id="videoDISABLED">
+							<!-- <source src="TODO from segment" type="video/mp4"/> -->
+						</video>
+						<!-- TODO score image? -->
+					</div>
+				</div>
+			</div>
+			<div id="logSB" onclick="logSB('', true);" title="click to clear">
+			</div>
+			<div id="copyright">
+				<div>© 2021 Christian Afonso</div>
+				<div id="mail">chr.afonso@gmail.com</div>
+			</div>
+		</div>
+	<body>
+</html>
