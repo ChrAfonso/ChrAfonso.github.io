@@ -47,11 +47,12 @@ body {
   background-color: #003F00;
 }
 
-#buttons {
+.buttons {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 10px;
+  margin-bottom: 20px;
   gap: 10px;
 }
 
@@ -103,14 +104,24 @@ button:disabled {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  
+  margin-top: 10px;
   margin-bottom: 10px;
-
+  
   visibility: hidden; /* initial */
 }
 
+.parameterDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
 .slidecontainer {
-  width: 30%;
+  width: 30vw;
 }
 
 .slider {

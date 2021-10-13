@@ -32,6 +32,7 @@ class SoundElement {
 		}
 	}
 	
+	// TODO load local files differently
 	loadFile(path, name, onLoaded, onError)
 	{
 		if(!name) {
@@ -44,7 +45,7 @@ class SoundElement {
 			this.log("  Loaded " + path + " as "+name+", decodeAudioData...");
 			
 			let arrayBuffer = request.response;
-			context.decodeAudioData(arrayBuffer, (buffer) => {
+			this.context.decodeAudioData(arrayBuffer, (buffer) => {
 				if(buffer == null) {
 					this.log("ERROR: buffer is null!");
 					return;
