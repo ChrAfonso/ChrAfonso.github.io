@@ -242,13 +242,6 @@
       "min": 0,
       "max": 100,
       "default": 100
-    },
-    {
-      "name": "percussion",
-      "description": "Percussion",
-      "min": 0,
-      "max": 100,
-      "default": 100
     }
   ]
 }
