@@ -1,0 +1,215 @@
+{
+  "info": {
+    "name": "violins-against-aliens",
+    "title": "Violins against Aliens",
+    "composer": "Christian Afonso"
+  },
+  "interface": {
+    "startSegment": "intro_action",
+    "defaultOutro": "outro"
+  },
+  "segments": [
+    {
+      "name": "intro_action",
+      "layers": [
+        { "name": "base", "file": "AWAC_intro_action_BASE.ogg" },
+        { "name": "intense", "file": "AWAC_intro_action_INTENSE.ogg", "parameter": "intensity", "function": "linear" },
+        { "name": "perc", "file": "AWAC_intro_action_PERC.ogg", "parameter": "percussion", "function": "linear" },
+        { "name": "reverb", "file": "AWAC_intro_action_REVERB.ogg", "parameter": "reverb", "function": "linear" },
+        { "name": "reverb_perc", "file": "AWAC_intro_action_REVERB_PERC.ogg", "parameter": "percussion*reverb", "function": "linear" }
+      ],
+      "next": "loop_action",
+      "triggers_enabled": [
+        "creepy",
+        "outro"
+      ]
+    },
+    {
+      "name": "loop_action",
+      "layers": [
+        { "name": "base", "file": "AWAC_loop_action_BASE.ogg" },
+        { "name": "intense", "file": "AWAC_loop_action_INTENSE.ogg", "parameter": "intensity" },
+        { "name": "perc", "file": "AWAC_loop_action_PERC.ogg", "parameter": "percussion", "function": "linear" },
+        { "name": "reverb", "file": "AWAC_loop_action_REVERB.ogg", "parameter": "reverb", "function": "linear" },
+        { "name": "reverb_perc", "file": "AWAC_loop_action_REVERB_PERC.ogg", "parameter": "percussion*reverb", "function": "linear" }
+      ],
+      "next": "loop_action",
+      "stinger": "stinger_gliss",
+      "triggers_enabled": [
+        "creepy",
+        "dramatic",
+        "outro"
+      ],
+      "tempo": 138,
+      "beat": "4/4",
+      "bars": [
+        { "number": 1, "offset": 0 },
+        { "number": 2, "offset": 1.739 },
+        { "number": 3, "offset": 3.478 },
+        { "number": 4, "offset": 5.217 },
+        { "number": 5, "offset": 6.956 },
+        { "number": 6, "offset": 8.695 },
+        { "number": 7, "offset": 10.434 },
+        { "number": 8, "offset": 12.173 },
+        { "number": 9, "offset": 13.913 },
+        { "number": 10, "offset": 15.652 },
+        { "number": 11, "offset": 17.391 },
+        { "number": 12, "offset": 19.130, "beat": "5/4" },
+        { "number": 13, "offset": 21.304 },
+        { "number": 14, "offset": 23.043 },
+        { "number": 15, "offset": 24.782 },
+        { "number": 16, "offset": 26.521 },
+        { "number": 17, "offset": 28.260 },
+        { "number": 18, "offset": 30 },
+        { "number": 19, "offset": 31.739 },
+        { "number": 20, "offset": 33.478 },
+        { "number": 21, "offset": 35.217 },
+        { "number": 22, "offset": 36.956 },
+        { "number": 23, "offset": 38.695 },
+        { "number": 24, "offset": 40.434, "beat": "5/4" },
+        { "number": 25, "offset": 42.608, "beat": "3/4" },
+        { "number": 26, "offset": 43.913, "beat": "3/4" },
+        { "number": 27, "offset": 45.217, "beat": "3/4" },
+        { "number": 28, "offset": 46.521, "beat": "3/4" },
+        { "number": 29, "offset": 47.826, "beat": "3/4" },
+        { "number": 30, "offset": 49.130, "beat": "3/4" },
+        { "number": 31, "offset": 50.434, "beat": "4/4" },
+        { "number": 32, "offset": 52.173, "beat": "4/4" }
+      ]
+    },
+    {
+      "name": "intro_dramatic",
+      "layers": [
+        { "name": "base", "file": "AWAC_intro_dramatic_BASE.ogg" },
+        { "name": "intense", "file": "AWAC_intro_dramatic_INTENSE.ogg", "parameter": "intensity" },
+        { "name": "perc", "file": "AWAC_intro_dramatic_PERC.ogg", "parameter": "percussion", "function": "linear" },
+        { "name": "reverb", "file": "AWAC_intro_dramatic_REVERB.ogg", "parameter": "reverb", "function": "linear" },
+        { "name": "reverb_perc", "file": "AWAC_intro_dramatic_REVERB_PERC.ogg", "parameter": "percussion*reverb", "function": "linear" }
+      ],
+      "next": "segment_dramatic",
+      "stinger": "stinger_dramatic",
+      "triggers_enabled": [
+        "outro"
+      ]
+    },
+    {
+      "name": "segment_dramatic",
+      "layers": [
+        { "name": "base", "file": "AWAC_segment_dramatic_BASE.ogg" },
+        { "name": "intense", "file": "AWAC_segment_dramatic_INTENSE.ogg", "parameter": "intensity" },
+        { "name": "perc", "file": "AWAC_segment_dramatic_PERC.ogg", "parameter": "percussion", "function": "linear" },
+        { "name": "reverb", "file": "AWAC_segment_dramatic_REVERB.ogg", "parameter": "reverb", "function": "linear" },
+        { "name": "reverb_perc", "file": "AWAC_segment_dramatic_REVERB_PERC.ogg", "parameter": "percussion*reverb", "function": "linear" }
+      ],
+      "next": "loop_action",
+      "triggers_enabled": [
+        "outro"
+      ],
+      "tempo": 138,
+      "beat": "4/4",
+      "bars": [
+        { "number": 1, "offset": 0 },
+        { "number": 2, "offset": 1.739 },
+        { "number": 3, "offset": 3.478 },
+        { "number": 4, "offset": 5.217 },
+        { "number": 5, "offset": 6.956 },
+        { "number": 6, "offset": 8.695 },
+        { "number": 7, "offset": 10.434 },
+        { "number": 8, "offset": 12.173 },
+        { "number": 9, "offset": 13.913 },
+        { "number": 10, "offset": 15.652 },
+        { "number": 11, "offset": 17.391 },
+        { "number": 12, "offset": 19.130 },
+        { "number": 13, "offset": 20.869 },
+        { "number": 14, "offset": 22.608 },
+        { "number": 15, "offset": 24.347 },
+        { "number": 16, "offset": 26.086 }
+      ]
+    },
+    
+    {
+      "name": "outro",
+      "file": "AWAC_outro_MASTERTRACK.ogg",
+      "next": "",
+      "outro": "",
+      "type": "outro",
+      "stinger": "stinger_outro"
+    },
+
+    {
+      "name": "stinger_gliss",
+      "file": "AWAC_stinger_gliss_MASTERTRACK.ogg",
+      "next": "",
+      "outro": "",
+      "type": "stinger",
+      "startOffset": 0.869
+    },
+    {
+      "name": "stinger_gliss_fast",
+      "file": "AWAC_stinger_gliss_fast_MASTERTRACK.ogg",
+      "next": "",
+      "outro": "",
+      "type": "stinger",
+      "startOffset": 0.434
+    },
+    {
+      "name": "stinger_dramatic",
+      "file": "AWAC_stinger_dramatic_MASTERTRACK.ogg",
+      "next": "",
+      "outro": "",
+      "type": "stinger",
+      "startOffset": 0.869
+    },
+    {
+      "name": "stinger_outro",
+      "file": "AWAC_stinger_outro_MASTERTRACK.ogg",
+      "next": "",
+      "outro": "",
+      "type": "stinger",
+      "startOffset": 0.869
+    }
+  ],
+  "triggers": [
+    {
+      "name": "creepy",
+      "description": "Trigger creepy stinger",
+      "stinger": "stinger_dramatic",
+      "urgency": "immediate"
+    },
+    {
+      "name": "dramatic",
+      "description": "Trigger dramatic segment",
+      "next": "intro_dramatic",
+      "urgency": "bar"
+    },
+    {
+      "name": "outro",
+      "description": "Trigger outro",
+      "next": "outro",
+      "urgency": "bar"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "intensity",
+      "description": "Intensity",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    {
+      "name": "percussion",
+      "description": "Percussion",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    },
+    {
+      "name": "reverb",
+      "description": "Room Size",
+      "min": 0,
+      "max": 100,
+      "default": 50
+    }
+  ]
+}

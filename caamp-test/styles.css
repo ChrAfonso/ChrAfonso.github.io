@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+* {
+  font-family: 'Orbitron', sans-serif;
+  color: #bbff00;
+}
+
+body {
+  height: fit-content;
+  background-color: #000000;
+}
+
+#background {
+  width: 100%;
+  height: 100%;
+  border-top: 0px;
+  background-color: #003F00;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+#title {
+  width: 100%;
+  
+  margin: auto;
+  text-align: center;
+  
+  background-image: linear-gradient(#000000, #003F00);
+}
+
+/*
+#left {
+  width: 50%;
+  position: absolute;
+  left: 0%;
+}
+#right {
+  width: 50%;
+  position: absolute;
+  left: 50%;
+}
+*/
+
+#content {
+  flex-grow: 2;
+  background-color: #003F00;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+button {
+  color: #000000;
+  background-color: #bbff00;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  font-size: 16pt;
+
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  border: 1px;
+  color: #FFFFFF;
+
+  cursor: pointer;
+}
+
+button:disabled {
+  color: #AAAAAA;
+  background-color: #85aa00;
+}
+
+#log {
+  color: #ff7300b7;
+  border:1px solid #ff7300b7;
+
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#canvasDiv {
+  width: 100%;
+  height: 120px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#sliderDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+  visibility: hidden; /* initial */
+}
+
+.parameterDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.slidecontainer {
+  width: 30vw;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 25px;
+  border-radius: 5px;
+  background: #AAAAAA;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: #bbff00;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background: #bbff00;
+  cursor: pointer;
+}
+
+/* for SoundBank, loading etc. info */
+#logSB {
+  color: #0000FF;
+  border:1px solid blue;
+  visibility: hidden; /* enabled when loggingEnabled */
+}
+
+#videoWindow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#video {
+  width: 50vw;
+  visibility: hidden;
+}
+
+#copyright {
+  font-size: 10pt;
+  color: #668300;
+  background-color: #003F00;
+
+  vertical-align: bottom;
+  margin-bottom: 10px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#copyright > div {
+  width: fit-content;
+}
